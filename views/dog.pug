@@ -1,0 +1,32 @@
+extends layout
+block content
+  h1= title 
+  p Welcome to the Dog shop
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let results = [
+                    {
+                        "Dog_name": "Schitzu",
+                        "Dog_color": "black",
+                        "price": 50
+                    },
+                    {
+                        "Dog_name": "lamber",
+                        "Dog_color": "Brown",
+                        "price": 75
+                    },
+                    {
+                        "Dog_name": "snow",
+                        "Dog_color": "white",
+                        "price": 80
+                    },                   
+                ]
+            each v,index in results
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.Dog_name} - #{v.Dog_color} - #{v.price}
+
+  script.                
+        function buy(intemNo)
+        {
+              alert(`you purchased Item ${intemNo+1}`)
+        }
