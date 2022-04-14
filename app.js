@@ -6,10 +6,21 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var dogRouter= require('./routes/dog');
-var addmodsRouter= require('./routes/addmods');
-var selectorRouter= require('./routes/selector');
+var dogRouter = require('./routes/dog');
+var addmodsRouter = require('./routes/addmods');
+var selectorRouter = require('./routes/selector');
+var dog = require("./models/dog");
+var resourceRouter = require("./controllers/resource");
 
+
+
+const connectionString =  'mongodb+srv://ramdasari:Welcome@cluster0.aoitq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 
 var app = express();
 
@@ -27,18 +38,66 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dog', dogRouter);
 app.use('/addmods', addmodsRouter);
+app.use('/resource', resourceRouter);
 
 
+//Get the default connection 
+var db = mongoose.connection;
+
+//Bind connection to error event  
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function () {
+  console.log("Connection to DB succeeded")
+});
 app.use('/selector', selectorRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
+// We can seed the collection if needed on 
+//server start 
+async function recreateDB() {
+  // Delete everything 
+  await dog.deleteMany();
 
+  let instance1 = new
+    dog({
+      Dog_name: "Schitzu", Dog_color: 'black',
+      price: 50
+    });
+  instance1.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
+  });
+
+
+  let instance2 = new
+    dog({
+      Dog_name: "snow", Dog_color: 'white',
+      price: 75
+    });
+  instance2.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
+  });
+
+  let instance3 = new
+    dog({
+      Dog_name: "lamber", Dog_color: 'Brown',
+      price: 80
+    });
+  instance3.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
+  });
+}
+
+let reseed = true;
+if (reseed) { recreateDB(); }
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
