@@ -10,7 +10,7 @@ var dogRouter = require('./routes/dog');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var dog = require("./models/dog");
-var resourceRouter = require("./controllers/resource");
+var resourceRouter = require("./routes/resource");
 
 
 
