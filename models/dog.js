@@ -1,9 +1,9 @@
 const mongoose = require("mongoose") 
-const costumeSchema = mongoose.Schema({ 
+const dogSchema = mongoose.Schema({ 
     Dog_name: String, 
     Dog_color: String, 
     price: Number 
 }) 
  
-module.exports = mongoose.model("Costume", 
-costumeSchema) 
+module.exports = mongoose.model("dog", 
+dogSchema) 

@@ -5,23 +5,8 @@ block content
   div(class="container-fluid")
         div(class="row")
             -
-                let results = [
-                    {
-                        "Dog_name": "Schitzu",
-                        "Dog_color": "black",
-                        "price": 50
-                    },
-                    {
-                        "Dog_name": "lamber",
-                        "Dog_color": "Brown",
-                        "price": 75
-                    },
-                    {
-                        "Dog_name": "snow",
-                        "Dog_color": "white",
-                        "price": 80
-                    },                   
-                ]
+                let results =  thedog                 
+                
             each v,index in results
                 div(class="col-sm-2" onclick=`buy(${index})`) #{v.Dog_name} - #{v.Dog_color} - #{v.price}
 
