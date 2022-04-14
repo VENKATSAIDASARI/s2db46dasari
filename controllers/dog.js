@@ -21,8 +21,26 @@ exports.dog_detail = function(req, res) {
 }; 
  
 // Handle dog create on POST. 
-exports.dog_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: dog create POST'); 
+exports.dog_create_post = async function(req, res) { 
+    console.log(req.body) 
+    let document = new dog(); 
+    // We are looking for a body, since POST does not have query parameters. 
+    // Even though bodies can be in many different formats, we will be picky 
+    // and require that it be a json object 
+    // {"Dog_name":"goat", "Dog_color":12, "size":"large"} 
+    document.Dog_name = req.body.Dog_name; 
+    document.Dog_color = req.body.Dog_color; 
+    document.price = req.body.price; 
+    try{ 
+        let result = await document.save(); 
+        console.log("saved");
+        res.send(result); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+
 }; 
  
 // Handle dog delete form on DELETE. 
