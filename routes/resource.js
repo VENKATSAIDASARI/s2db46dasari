@@ -6,7 +6,9 @@ var api_controller = require('../controllers/api');
 var dog_controller = require('../controllers/dog'); 
  
 /// API ROUTE /// 
- 
+module.exports = router;
+ /* GET detail costume page */
+router.get('/detail', dog_controller.dog_view_one_Page);
 // GET resources base. 
 router.get('/', api_controller.api); 
  
@@ -19,12 +21,21 @@ router.post('/dog', dog_controller.dog_create_post);
 router.delete('/dog/:id', dog_controller.dog_delete); 
  
 // PUT request to update dog. 
-router.put('/dog/:id', dog_controller.dog_update_put); 
+//router.put('/dog/:id', dog_controller.dog_update_put); 
  
 // GET request for one dog. 
 router.get('/dog/:id', dog_controller.dog_detail); 
  
 // GET request for list of all dog items. 
 router.get('/dog', dog_controller.dog_list); 
+
+/* GET create costume page */
+router.get('/create', dog_controller.dog_create_Page);
  
-module.exports = router;
+
+/* GET create update page */
+router.get('/update', dog_controller.dog_update_put);
+
+/* GET delete costume page */
+router.get('/delete', dog_controller.dog_delete_Page);
+module.exports = router;``

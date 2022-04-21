@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+  if(to show == null)
+      h2 no instance to view update
+  else
+  - let dogid = toShow._id
+  - let dogName = toShow.Dog_name
+  - let dogcolor = toShow.Dog_color
+  - let price = toShow.price
+    
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{dogid}
+  - let actionid = "/resource/dog/" + dogid
+  form(id='dogForm', action="/resource/dog", method="PUT")
+    div.form-group
+        label.dogLabel(for='dogname') dog Name
+        input#dogname(type='text', name='Dog_name')
+    div.form-group
+        label.dogLabel(for='company') dog Color
+        input#dogcolor(type='text', name='Dog_color')
+    div.form-group
+        label.dogLabel(for='price') dog Price
+        input#price(type='number', name='price')
+    input.button(type="submit")
+
+  script.
+    document.forms['dogForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.text(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        //resp = "sample";
+        console.log("sample")
+        alert("Update failed " + error )
+      });
+    });
