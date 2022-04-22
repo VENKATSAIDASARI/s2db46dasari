@@ -1,23 +1,24 @@
-extends layout
-block content
+extends layout 
+ 
+block content 
   h1= title 
-  if (toShow == null)
-  h2 No instance to provide details
- - let dogid = toShow._id
- - let Dog_name = toShow.Dog_name
- - let Dog_color = toShow.Dog_color
- - let price = toShow.price
- div
-  div.row
-    div(class='dogAttr mr-3') dog ID is:
-    div #{dogid}
-  div.row
-    div(class='dogAttr mr-3') dog name  is:
-    div #{Dog_name}
-  div.row
-    div(class='dogAttr mr-3')  dog color is:
-    div #{Dog_color}
-  div.row
-    div(class='dogAttr mr-3') dog  Cost is:
-    div #{price}
-    
+  if (toshow == null)
+    h2 no instance to view detail 
+  else
+  - let id  = toShow._id 
+  - let name = toShow.name
+  - let color = toShow.color  
+  - let price  = toShow.price 
+  div 
+    div.row 
+      div(class='dogAttr mr-3') Dog ID is: 
+      div #{id} 
+    div.row 
+      div(class='dogAttr mr-3') Dog name is: 
+      div #{name} 
+    div.row 
+      div(class='dogAttr mr-3') Dog Color is: 
+      div #{color} 
+    div.row 
+      div(class='dogAttr mr-3') Dog price is: 
+      div #{price}

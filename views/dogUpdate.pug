@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  if(to show == null)
-      h2 no instance to view update
+  if(toshow == null)
+    h2 no instance to view update
   else
   - let dogid = toShow._id
   - let dogName = toShow.Dog_name
@@ -16,16 +16,16 @@ block content
   - let actionid = "/resource/dog/" + dogid
   form(id='dogForm', action="/resource/dog", method="PUT")
     div.form-group
-        label.dogLabel(for='dogname') dog Name
+        label.dogLabel(for='dogname' class='dogAttr mr-3') dog Name
         input#dogname(type='text', name='Dog_name')
     div.form-group
-        label.dogLabel(for='company') dog Color
+        label.dogLabel(for='company'  class='dogAttr mr-3') dog Color
         input#dogcolor(type='text', name='Dog_color')
     div.form-group
-        label.dogLabel(for='price') dog Price
+        label.dogLabel(for='price'  class='dogAttr mr-3') dog Price
         input#price(type='number', name='price')
     input.button(type="submit")
-
+  
   script.
     document.forms['dogForm'].addEventListener('submit', (event) => {
       event.preventDefault();

@@ -21,7 +21,7 @@ router.post('/dog', dog_controller.dog_create_post);
 router.delete('/dog/:id', dog_controller.dog_delete); 
  
 // PUT request to update dog. 
-//router.put('/dog/:id', dog_controller.dog_update_put); 
+router.put('/dog/:id', dog_controller.dog_update_put); 
  
 // GET request for one dog. 
 router.get('/dog/:id', dog_controller.dog_detail); 
@@ -34,7 +34,7 @@ router.get('/create', dog_controller.dog_create_Page);
  
 
 /* GET create update page */
-router.get('/update', dog_controller.dog_update_put);
+//router.get('/update', dog_controller.dog_update_put);
 
 /* GET delete costume page */
 router.get('/delete', dog_controller.dog_delete_Page);

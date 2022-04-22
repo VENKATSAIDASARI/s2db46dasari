@@ -3,12 +3,12 @@ var dog = require('../models/dog');
 // List of all dog 
 exports.dog_list = async function (req, res) {
     // List of all dog 
-
     try {
-        thedog = await dog.find();
-        res.send(thedog);
+        result = await dog.find();
+        res.send(result);
     }
     catch (err) {
+        console.log("dog_list");
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
@@ -22,6 +22,7 @@ exports.dog_detail = async function (req, res) {
         result = await dog.findById(req.params.id)
         res.send(result)
     } catch (error) {
+        console.log("dog_detail");
         res.status(500)
         res.send(`{"error": document for id ${req.params.id} not found`);
     }
@@ -60,6 +61,7 @@ exports.dog_delete = async function (req, res) {
         res.send(result)
     }
     catch (err) {
+        console.log("dog_delete");
         res.status(500)
         res.send(`{"error": Error deleting ${err}}`);
     }
@@ -94,6 +96,7 @@ exports.dog_view_one_Page = async function (req, res) {
         res.render('dogdetail', { title: 'dog Detail', toShow: result });
     }
     catch (err) {
+        console.log("dog_view_one_Page");
         res.status(500)
         res.send(`{'error': '${err}'}`);
     }
@@ -102,10 +105,12 @@ exports.dog_view_one_Page = async function (req, res) {
 // Handle a show all view 
 exports.dog_view_all_Page = async function (req, res) {
     try {
+        console.log("dog_view_all_Page");
         thedog = await dog.find();
         res.render('dog', { title: 'dog Search Results', results: thedog });
     }
     catch (err) {
+        console.log("dog_view_all_Page");
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
@@ -117,6 +122,7 @@ exports.dog_create_Page = function (req, res) {
         res.render('dogcreate', { title: 'Dog Create' });
     }
     catch (err) {
+        console.log("dog_create_Page");
         res.status(500)
         res.send(`{'error': '${err}'}`);
     }
@@ -126,9 +132,11 @@ exports.dog_update_put = async function (req, res) {
     console.log("update view for item " + req.query.id)
     try {
         let result = await dog.findById(req.query.id)
+        console.log(result);
         res.render('dogupdate', { title: 'Dog Update', toShow: result });
     }
     catch (err) {
+        console.log("dog_update_put");
         res.status(500)
         res.send(`{'error': '${err}'}`);
     }
@@ -143,8 +151,9 @@ exports.dog_delete_Page = async function(req, res) {
    result });
     }
     catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+        console.log("dog_delete_Page");
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
 
 };

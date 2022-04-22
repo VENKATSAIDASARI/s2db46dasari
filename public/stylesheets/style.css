@@ -9,4 +9,43 @@ a {
 .dogAttr { 
   background-color: aquamarine; 
   width: 120px; 
+}
+
+a {
+  color: #00B7FF;
+}
+
+.dogAttr { 
+  background-color: rgb(12, 111, 78); 
+  width: 120px;
+  border: outset;
+  font-size: small; 
+  padding: 10px;
+  border-radius: 5px;
 } 
+.values{
+  border: outset;
+  width: 170px;
+  border-color: bisque;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: small;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: rgb(143, 33, 33);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+h1 {
+	background-color:  #99ccff;
+	display: inline-block;
+}
