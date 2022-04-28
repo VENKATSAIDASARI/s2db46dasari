@@ -9,6 +9,7 @@ var dog_controller = require('../controllers/dog');
 module.exports = router;
  /* GET detail costume page */
 router.get('/detail', dog_controller.dog_view_one_Page);
+router.get('/detail', dog_controller.dog_update_put);
 // GET resources base. 
 router.get('/', api_controller.api); 
  

@@ -24,7 +24,7 @@ block content
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
         document.getElementById("errors").style.display="block"
-        return resp.json(); // or resp.text() or whatever the server sends
+        return resp.text(); // or resp.text() or whatever the server sends
       }).then((body) => {
         if(body.name){
           document.getElementById("errors").innerHTML=`${body.name}  \n ${body.message}\n`;
